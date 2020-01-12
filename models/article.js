@@ -10,7 +10,7 @@ const Sequelize = db.sequelize;
 // 引入上一步的文章数据表模型文件
 const Article = Sequelize.import('../schema/article');
 // 自动创建表
-Article.sync({force: false});
+// Article.sync({force: false});
 
 class ArticleModel {
     /**

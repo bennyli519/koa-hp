@@ -52,17 +52,12 @@ class articleController {
      */
     static async detail(ctx) {
         let id = ctx.params.id;
-
         if (id) {
             try {
                 // 查询文章详情模型
                 let data = await ArticleModel.getArticleDetail(id);
                 ctx.response.status = 200;
-                ctx.body = {
-                    code: 200,
-                    msg: '查询成功',
-                    data
-                }
+                ctx.success(data,'asdfas')
 
             } catch (err) {
                 ctx.response.status = 412;

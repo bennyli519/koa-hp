@@ -1,24 +1,27 @@
-module.exports = (sequelize,DataTypes)=>{
-    const user = sequelize.define('user',{
-        //用户id
-        user_id:{
-            type:DataTypes.INTEGER,
-            primaryKey:true,
-            allowNull: false,
-            autoIncrement: true,
-        },
-        user_name:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        password:{
-            type:sequelize.STRING,
-            defaultValue:'123456'
-        },
-        user_type:{
-            type:sequelize.INTEGER,
-            defaultValue:1001,
-            allowNull:false
-        }
-    })
-}
+/* jshint indent: 1 */
+
+module.exports = function(sequelize, DataTypes) {
+	return sequelize.define('user', {
+		user_id: {
+			type: DataTypes.INTEGER(10),
+			allowNull: false,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		user_name: {
+			type: DataTypes.STRING(50),
+			allowNull: false
+		},
+		user_pwd: {
+			type: DataTypes.STRING(50),
+			allowNull: false
+		},
+		user_type: {
+			type: DataTypes.INTEGER(10),
+			allowNull: false
+		}
+	}, {
+		tableName: 'user',
+		timestamps: false
+	});
+};
