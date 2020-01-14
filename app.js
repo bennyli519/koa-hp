@@ -54,11 +54,11 @@ app.use(async (ctx, next) => {
   })
 });
 // console.log('==============================================')
-const SECRET = 'shared-secret'; // demo，可更换
-app.use(koajwt({ secret: SECRET }).unless({
-    // 登录，注册接口不需要验证
-    path: [/^\/user\/login/]
-}));
+// const SECRET = 'shared-secret'; // demo，可更换
+// app.use(koajwt({ secret: SECRET }).unless({
+//     // 登录，注册接口不需要验证
+//     path: [/^\/user\/login/]
+// }));
 
 //统一格式
 function routerResponse(option={}){

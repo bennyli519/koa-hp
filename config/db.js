@@ -21,6 +21,28 @@ const sequelize = new Sequelize('blogs', 'root', '123', {
     timezone: '+08:00' //东八时区
 });
 
-module.exports = {
-    sequelize
+const fs = require('fs');
+
+
+let files = fs.readdirSync('schema');
+
+let js_files = files.filter((f)=>{
+    return f.endsWith('.js');
+}, files);
+
+module.exports = {};
+
+for (let f of js_files) {
+    console.log(`import model from file ${f}...`);
+    let name = f.substring(0, f.length - 3);
+    console.log(name)
+    module.exports[name] = sequelize.import('../schema/' + f);
 }
+
+// module.exports = {
+//     sequelize
+// }
+
+module.exports.sync = () => {
+    sequelize.sync();
+};
