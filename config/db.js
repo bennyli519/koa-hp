@@ -1,6 +1,12 @@
+/*
+ * @Description: 
+ * @Author: Benny
+ * @Date: 2019-12-29 21:26:44
+ * @LastEditTime : 2020-01-14 19:54:28
+ */
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('blogs', 'root', '123', {
+const sequelize = new Sequelize('hostital', 'root', '123', {
     host: 'localhost',
     dialect: 'mysql',
     operatorsAliases: false,
@@ -30,18 +36,19 @@ let js_files = files.filter((f)=>{
     return f.endsWith('.js');
 }, files);
 
-module.exports = {};
+module.exports = {sequelize};
 
 for (let f of js_files) {
-    console.log(`import model from file ${f}...`);
+   
     let name = f.substring(0, f.length - 3);
-    console.log(name)
+
     module.exports[name] = sequelize.import('../schema/' + f);
 }
 
 // module.exports = {
 //     sequelize
 // }
+
 
 module.exports.sync = () => {
     sequelize.sync();

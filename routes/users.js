@@ -1,14 +1,19 @@
+/*
+ * @Description: 
+ * @Author: Benny
+ * @Date: 2019-12-29 21:01:50
+ * @LastEditTime : 2020-01-14 17:05:21
+ */
 const router = require('koa-router')()
 const jwt = require('jsonwebtoken')
+const UserController = require('../controllers/user');
 router.prefix('/user')
 
-router.get('/', function (ctx, next) {
-  ctx.body = 'this is a users response!'
-})
 
-router.get('/bar', function (ctx, next) {
-  ctx.body = 'this is a users/bar response'
-})
+
+
+//注册
+router.post('/register',UserController.create)
 
 const sqlUser ={
   username:'admin',

@@ -1,3 +1,32 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "window.zoomLevel": 1,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "workbench.colorTheme": "Material Theme",
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+
+    "fileheader.customMade": {
+        "Description":"",
+        "Author":"Benny",
+        "Date":"Do not edit",
+        "LastEditTime":"Do not edit"
+    },
+    "fileheader.cursorMode": {
+        "author":"Benny",
+        "description":"",
+        "param":"",
+    },
+  
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": true,
+    "explorer.confirmDelete": false,
+
 }

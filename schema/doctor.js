@@ -23,6 +23,11 @@ module.exports = function(sequelize, DataTypes) {
 		d_phone: {
 			type: DataTypes.INTEGER(11),
 			allowNull: true
+		},
+		user_id: {
+			type: DataTypes.INTEGER(10),
+			allowNull: false,
+			primaryKey: true
 		}
 	}, {
 		tableName: 'doctor',
