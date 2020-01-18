@@ -2,17 +2,22 @@
  * @Description: 用户model
  * @Author: Benny
  * @Date: 2020-01-14 16:11:49
- * @LastEditTime : 2020-01-14 20:36:13
+ * @LastEditTime : 2020-01-19 02:52:30
  */
 
 const models = require('../config/db');
 const User = models.user;
 const Doctor = models.doctor;
+const Role = models.role;
 const sequelize = models.sequelize;
 
+User.belongsTo(Role,{foreignKey:'user_type'})
 
 class UserModel {
-    //创建用户
+    /**
+     * @author: Benny
+     * @description: 创建用户
+     */    
     static async createAccount(data){
         return  sequelize.transaction( t=>{
             return  User.create({
@@ -29,11 +34,40 @@ class UserModel {
                         d_name:user.user_name
                     },{transaction:t})
                 }
-                
+                 
             })
         }).then(result =>{
             
         })
     }
+
+    /**
+     * @author: Benny
+     * @description: 查询是否有该账号
+     */
+    static async verifyAccount(data){
+        return await User.findOne({
+            where: {
+              user_name:data,
+            },
+        })
+    }
+    /**
+     * @author: Benny
+     * @description: 获取用户信息
+     */
+    static async getUserInfo(data){
+        return await User.findOne({
+            where:{
+                user_id:data
+            },
+            include:[{
+                model:Role,
+                attributes:['role_id','role_name']
+            }]
+        })
+    }
+
+ 
 }
 module.exports = UserModel

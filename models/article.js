@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @Author: Benny
+ * @Date: 2019-12-29 21:34:29
+ * @LastEditTime: 2020-01-16 01:45:51
+ */
 /**
 ├── modules
     └── article.js
@@ -5,7 +11,7 @@
 
 // 引入刚刚在第五点建立连接mysql数据库的db.js文件
 const db = require('../config/db');
-console.log(db)
+
 // // 引入Sequelize对象
 // const Sequelize = db.sequelize;
 // 引入上一步的文章数据表模型文件

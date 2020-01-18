@@ -12,7 +12,9 @@
     "[javascript]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
-
+    "fileheader.configObj": {
+        "autoAdd": true, // 默认开启
+    },
     "fileheader.customMade": {
         "Description":"",
         "Author":"Benny",
