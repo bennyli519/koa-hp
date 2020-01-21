@@ -3,10 +3,9 @@
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('doctor', {
 		doctor_id: {
-			type: DataTypes.INTEGER(10),
+			type: DataTypes.INTEGER,
 			allowNull: false,
-			primaryKey: true,
-			autoIncrement: true
+			primaryKey: true
 		},
 		d_name: {
 			type: DataTypes.STRING(50),
@@ -17,15 +16,15 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		},
 		d_age: {
-			type: DataTypes.INTEGER(2),
+			type: DataTypes.INTEGER,
 			allowNull: true
 		},
 		d_phone: {
-			type: DataTypes.INTEGER(11),
+			type: DataTypes.INTEGER,
 			allowNull: true
 		},
 		user_id: {
-			type: DataTypes.INTEGER(10),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true
 		}

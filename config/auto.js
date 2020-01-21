@@ -1,9 +1,15 @@
+/*
+ * @Description: 
+ * @Author: Benny
+ * @Date: 2020-01-20 11:20:14
+ * @LastEditTime: 2020-01-21 11:25:39
+ */
 
 const SequelizeAuto = require('sequelize-auto')
 const auto = new SequelizeAuto(
     'hostital',     //数据库的库名
     'root',         //mysql数据库的用户名
-    '123',     //mysql数据库的密码
+    'a123456789',     //mysql数据库的密码
     {
         host: '127.0.0.1',      // 数据库服务器ip
         dialect: 'mysql',

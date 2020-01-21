@@ -2,7 +2,7 @@
  * @Description: User 控制器
  * @Author: Benny
  * @Date: 2020-01-14 16:45:53
- * @LastEditTime : 2020-01-19 02:58:33
+ * @LastEditTime : 2020-01-20 15:42:11
  */
 const UserModel = require('../models/user');
 const crypt = require('../config/crypt');
@@ -19,6 +19,7 @@ class userController{
         let req = ctx.request.body;
         req.password = crypt.encrypt(req.password)
         const {username,password,userType}  = req
+        console.log(req)
         if(username 
             && password
             && userType ){
@@ -73,8 +74,8 @@ class userController{
         ctx.success({
             userId:res.user_id,
             userName:res.user_name,
-            roleName:res.role.role_name,
-            roleType:res.user_type
+            roleName:[res.role.role_name],
+            roleType:[res.user_type]
         })
       
         

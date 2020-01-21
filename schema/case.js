@@ -3,13 +3,12 @@
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('case', {
 		case_id: {
-			type: DataTypes.INTEGER(10),
+			type: DataTypes.INTEGER,
 			allowNull: false,
-			primaryKey: true,
-			autoIncrement: true
+			primaryKey: true
 		},
 		office_id: {
-			type: DataTypes.INTEGER(10),
+			type: DataTypes.INTEGER,
 			allowNull: false
 		},
 		c_content: {
@@ -26,6 +25,14 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		c_date: {
 			type: DataTypes.DATE,
+			allowNull: true
+		},
+		patient_id: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
+		c_cure: {
+			type: DataTypes.STRING(255),
 			allowNull: true
 		}
 	}, {

@@ -2,7 +2,7 @@
  * @Description: 用户model
  * @Author: Benny
  * @Date: 2020-01-14 16:11:49
- * @LastEditTime : 2020-01-19 02:52:30
+ * @LastEditTime : 2020-01-20 15:36:56
  */
 
 const models = require('../config/db');
@@ -10,7 +10,7 @@ const User = models.user;
 const Doctor = models.doctor;
 const Role = models.role;
 const sequelize = models.sequelize;
-
+// models.sync();
 User.belongsTo(Role,{foreignKey:'user_type'})
 
 class UserModel {

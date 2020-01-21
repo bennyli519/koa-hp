@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @Author: Benny
+ * @Date: 2020-01-20 11:20:14
+ * @LastEditTime: 2020-01-20 15:42:24
+ */
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -43,9 +49,9 @@ app.use(async (ctx, next) => {
 app.use(async (ctx, next) => {
   return next().catch((err) => {
       if (err.status === 401) {
-          ctx.status = 401;
+          ctx.status = 50008;
           ctx.body = {
-              code: 401,
+              code: 50008,
               msg: err.message
           }
       } else {

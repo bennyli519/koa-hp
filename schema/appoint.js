@@ -1,14 +1,20 @@
+/*
+ * @Description: 
+ * @Author: Benny
+ * @Date: 2020-01-20 11:20:14
+ * @LastEditTime: 2020-01-21 11:28:33
+ */
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('appoint', {
 		appoint_id: {
-			type: DataTypes.INTEGER(10),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true
 		},
 		office_id: {
-			type: DataTypes.INTEGER(10),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'office',
@@ -16,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		},
 		doctor_id: {
-			type: DataTypes.INTEGER(10),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'doctor',

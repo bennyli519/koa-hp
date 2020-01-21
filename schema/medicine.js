@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('medicine', {
 		medicine_id: {
-			type: DataTypes.INTEGER(10),
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true
 		},
@@ -12,11 +12,11 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false
 		},
 		m_type: {
-			type: DataTypes.INTEGER(5),
+			type: DataTypes.INTEGER,
 			allowNull: false
 		},
 		m_quality: {
-			type: DataTypes.INTEGER(10),
+			type: DataTypes.INTEGER,
 			allowNull: true
 		},
 		m_price: {
