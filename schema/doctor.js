@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
 		doctor_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			primaryKey: true
+			primaryKey: true,
+			autoIncrement: true
 		},
 		d_name: {
 			type: DataTypes.STRING(50),

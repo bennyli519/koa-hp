@@ -3,9 +3,10 @@
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('office', {
 		office_id: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.INTEGER(10),
 			allowNull: false,
-			primaryKey: true
+			primaryKey: true,
+			autoIncrement: true
 		},
 		o_name: {
 			type: DataTypes.STRING(255),

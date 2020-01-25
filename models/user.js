@@ -25,7 +25,7 @@ class UserModel {
                 user_pwd:data.password,
                 user_type:data.userType
             },{transaction:t}).then(user=>{
-        
+                console.log(user)
                 if(user.user_type == 1){
 
                 }else if(user.user_type == 2){

@@ -7,6 +7,7 @@
 const router = require('koa-router')()
 const jwt = require('jsonwebtoken')
 const UserController = require('../controllers/user');
+const OfficeController = require('../controllers/office');
 router.prefix('/user')
 
 
@@ -20,5 +21,7 @@ router.post('/login',UserController.login)
 
 //获取用户信息
 router.get('/info',UserController.getUserInfo)
+
+router.post('/createOffice',OfficeController.createOffice)
 
 module.exports = router

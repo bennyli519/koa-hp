@@ -9,9 +9,10 @@
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('appoint', {
 		appoint_id: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.INTEGER(10),
 			allowNull: false,
-			primaryKey: true
+			primaryKey: true,
+			autoIncrement: true
 		},
 		office_id: {
 			type: DataTypes.INTEGER,

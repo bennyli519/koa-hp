@@ -17,9 +17,9 @@ class userController{
      */
     static async create(ctx){
         let req = ctx.request.body;
+        console.log(req)
         req.password = crypt.encrypt(req.password)
         const {username,password,userType}  = req
-        console.log(req)
         if(username 
             && password
             && userType ){

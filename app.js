@@ -16,6 +16,7 @@ const koajwt = require('koa-jwt')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const office = require('./routes/office')
 
 // error handler
 onerror(app)
@@ -23,6 +24,12 @@ onerror(app)
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
+
+   //使用
+// const koaBody = require('koa-body')({
+//     multipart: true,  // 允许上传多个文件
+// });
+// app.use(koaBody)
 
 
 app.use(json())
@@ -96,7 +103,7 @@ app.use(routerResponse())
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
-
+app.use(office.routes(), office.allowedMethods())
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
