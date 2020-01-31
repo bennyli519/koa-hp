@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Benny
  * @Date: 2020-01-20 11:20:14
- * @LastEditTime: 2020-01-21 11:28:33
+ * @LastEditTime : 2020-01-31 16:25:45
  */
 /* jshint indent: 1 */
 
@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 			autoIncrement: true
 		},
 		office_id: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.INTEGER(10),
 			allowNull: false,
 			references: {
 				model: 'office',
@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		},
 		doctor_id: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.INTEGER(10),
 			allowNull: false,
 			references: {
 				model: 'doctor',

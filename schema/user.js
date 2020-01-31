@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @Author: Benny
+ * @Date: 2020-01-31 13:12:51
+ * @LastEditTime: 2020-01-31 16:25:54
+ */
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
@@ -17,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false
 		},
 		user_type: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.INTEGER(2),
 			allowNull: false
 		}
 	}, {

@@ -2,11 +2,11 @@
  * @Description: 
  * @Author: Benny
  * @Date: 2019-12-29 21:26:44
- * @LastEditTime : 2020-01-20 14:48:45
+ * @LastEditTime : 2020-01-31 15:18:36
  */
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('hostital', 'root', '123456789', {
+const sequelize = new Sequelize('hostital', 'root', 'a123456789', {
     host: 'localhost',
     dialect: 'mysql',
     operatorsAliases: false,
@@ -51,5 +51,5 @@ for (let f of js_files) {
 
 
 module.exports.sync = () => {
-    sequelize.sync();
+    // sequelize.sync();
 };

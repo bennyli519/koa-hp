@@ -2,7 +2,7 @@
  * @Description: Office 控制器
  * @Author: Benny
  * @Date: 2020-01-14 16:45:53
- * @LastEditTime : 2020-01-20 15:42:11
+ * @LastEditTime : 2020-01-31 13:58:50
  */
 const officeModel = require('../models/office');
 
@@ -39,6 +39,10 @@ class officeController{
         ctx.success(res)
     }
 
+    /**
+     * @author: Benny
+     * @description: 删除科室
+     */
     static async deleteOffice(ctx){
         const { officeId }  = ctx.request.body
         const res = await officeModel.deleteOffice(officeId);

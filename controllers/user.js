@@ -2,7 +2,7 @@
  * @Description: User 控制器
  * @Author: Benny
  * @Date: 2020-01-14 16:45:53
- * @LastEditTime : 2020-01-20 15:42:11
+ * @LastEditTime : 2020-01-31 17:29:13
  */
 const UserModel = require('../models/user');
 const crypt = require('../config/crypt');
@@ -18,15 +18,12 @@ class userController{
     static async create(ctx){
         let req = ctx.request.body;
         console.log(req)
-        req.password = crypt.encrypt(req.password)
-        const {username,password,userType}  = req
-        if(username 
-            && password
-            && userType ){
+        req.pass = crypt.encrypt(req.pass)
+        if(req){
             const res = await UserModel.createAccount(req)
             ctx.success('创建用户成功')
         }else{
-            ctx.fail('参数不齐全')
+            ctx.fail('创建失败')
         }
     }
 
@@ -57,7 +54,7 @@ class userController{
             }
             
         } catch (error) {
-            ctx.fail('异常')
+            ctx.fail(error)
         }
     }
 
@@ -66,19 +63,45 @@ class userController{
      * @description: 获取用户信息
      */
     static async getUserInfo(ctx){
-        console.log(ctx.query.token)
-            
-        let obj = jwt.verify(ctx.query.token,secret)
-        const res = await UserModel.getUserInfo(obj.userId)
-        console.log(res)
-        ctx.success({
-            userId:res.user_id,
-            userName:res.user_name,
-            roleName:[res.role.role_name],
-            roleType:[res.user_type]
-        })
+        try {       
+            //验证token是否有效
+            let obj = jwt.verify(ctx.query.token,secret)
+            const res = await UserModel.getUserInfo(obj.userId)
+            ctx.success({
+                userId:res.user_id,
+                userName:res.user_name,
+                roleName:[res.role.role_name],
+                roleType:[res.user_type]
+            })       
+        } catch (error) {
+            ctx.fail(error)
+        }
+    }
+    /**
+     * @author: Benny
+     * @description: 获取用户列表
+     */
+    static async getAccountList(ctx){
+        try {
+          const res =  await UserModel.getAccountList()
+          let list = []
+          res.map(i=>{
+            console.log(i)
+              let obj = {
+                  userId:i.user_id,
+                  userName:i.user_name,
+                  userType:i.user_type,
+                  userTypeName:i.role.role_name
+                }
+                list.push(obj)
+           
+          })
       
-        
+       
+          ctx.success(list)
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 

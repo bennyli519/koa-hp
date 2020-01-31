@@ -1,7 +1,13 @@
+
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('patient', {
+		user_id: {
+			type: DataTypes.INTEGER(10),
+			allowNull: false,
+			primaryKey: true
+		},
 		patient_id: {
 			type: DataTypes.INTEGER(10),
 			allowNull: false,
@@ -13,15 +19,15 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false
 		},
 		p_gender: {
-			type: DataTypes.STRING(2),
+			type: DataTypes.STRING(20),
 			allowNull: false
 		},
 		p_age: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.INTEGER(2),
 			allowNull: false
 		},
 		p_phone: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.STRING(11),
 			allowNull: true
 		},
 		p_address: {
@@ -29,8 +35,8 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		},
 		doctor_id: {
-			type: DataTypes.INTEGER,
-			allowNull: false
+			type: DataTypes.INTEGER(10),
+			allowNull: true
 		}
 	}, {
 		tableName: 'patient',
