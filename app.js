@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Benny
  * @Date: 2020-01-20 11:20:14
- * @LastEditTime: 2020-01-20 15:42:24
+ * @LastEditTime : 2020-02-05 23:36:32
  */
 const Koa = require('koa')
 const app = new Koa()
@@ -17,6 +17,7 @@ const koajwt = require('koa-jwt')
 const index = require('./routes/index')
 const users = require('./routes/users')
 const office = require('./routes/office')
+const appoint = require('./routes/appoint')
 
 // error handler
 onerror(app)
@@ -104,6 +105,7 @@ app.use(routerResponse())
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(office.routes(), office.allowedMethods())
+app.use(appoint.routes(), appoint.allowedMethods())
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)

@@ -2,7 +2,7 @@
  * @Description: 用户model
  * @Author: Benny
  * @Date: 2020-01-14 16:11:49
- * @LastEditTime : 2020-01-31 17:40:18
+ * @LastEditTime : 2020-02-04 16:14:22
  */
 
 const models = require('../config/db');

@@ -2,12 +2,10 @@
  * @Description: 
  * @Author: Benny
  * @Date: 2019-12-29 21:01:50
- * @LastEditTime : 2020-01-31 13:27:38
+ * @LastEditTime : 2020-02-01 14:58:55
  */
 const router = require('koa-router')()
-const jwt = require('jsonwebtoken')
 const UserController = require('../controllers/user');
-const OfficeController = require('../controllers/office');
 router.prefix('/user')
 
 
