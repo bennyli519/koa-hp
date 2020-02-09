@@ -2,7 +2,7 @@
  * @Description: book 控制器
  * @Author: Benny
  * @Date: 2020-01-14 16:45:53
- * @LastEditTime : 2020-02-07 12:03:59
+ * @LastEditTime : 2020-02-09 23:10:07
  */
 const appointModel = require('../models/appoint');
 const jwt = require('jsonwebtoken')
@@ -57,7 +57,6 @@ class appointController{
                   list.push(obj)
                   
             })
-            ctx.success(list)
             if(res)
                 ctx.success(list)
             else

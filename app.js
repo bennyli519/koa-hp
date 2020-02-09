@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Benny
  * @Date: 2020-01-20 11:20:14
- * @LastEditTime : 2020-02-05 23:36:32
+ * @LastEditTime : 2020-02-09 23:12:11
  */
 const Koa = require('koa')
 const app = new Koa()
@@ -18,6 +18,7 @@ const index = require('./routes/index')
 const users = require('./routes/users')
 const office = require('./routes/office')
 const appoint = require('./routes/appoint')
+const doctor = require('./routes/doctor')
 
 // error handler
 onerror(app)
@@ -106,6 +107,7 @@ app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(office.routes(), office.allowedMethods())
 app.use(appoint.routes(), appoint.allowedMethods())
+app.use(doctor.routes(), doctor.allowedMethods())
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
