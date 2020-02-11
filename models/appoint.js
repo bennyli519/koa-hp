@@ -52,6 +52,19 @@ class AppointModel {
             }
         })
     }
+
+    static async updateRecord(appoint){
+        return await Appoint.update(
+            {
+                a_status:appoint.status
+            },
+            {
+                where:{
+                    appoint_id:appoint.appointId
+                }
+            }
+        )
+    }
 }
 
 module.exports =  AppointModel

@@ -2,9 +2,10 @@
  * @Description:医生相关接口
  * @Author: Benny
  * @Date: 2020-01-14 16:45:53
- * @LastEditTime : 2020-02-11 21:07:32
+ * @LastEditTime : 2020-02-11 21:41:07
  */
 const doctorModel = require('../models/doctor');
+const appointModel = require('../models/appoint');
 const jwt = require('jsonwebtoken')
 //密钥
 const secret = 'shared-secret'
@@ -32,6 +33,7 @@ class doctorController{
                     reason:i.a_reason,
                     status:i.a_status,        
                     phone:i.a_phone,
+                    appointId:i.appoint_id,
                     patientId:i.patient_id,
                     age:i.patient && i.patient.p_age,
                     gender:i.patient && i.patient.p_gender == 'male'?'男':'女'
@@ -83,11 +85,17 @@ class doctorController{
      */
     static async consult(ctx){
         let req = ctx.request.body;
+        console.log(req)
         const token = ctx.cookies.get('vue_admin_template_token');
         const obj = jwt.verify(token,secret)
         req.userId = obj.userId;
         if(req){
             let res = await doctorModel.addConsult(req)
+            let appoint = {
+                appointId:   req.appointId,
+                status:'待取药'
+            }
+            appointModel.updateRecord(appoint)
             ctx.success('提交成功')
         }else{
             ctx.fail('提交失败')

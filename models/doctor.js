@@ -2,7 +2,7 @@
  * @Author: Benny
  * @Date: 2020-02-05 23:08:01
  * @LastEditors  : Please set LastEditors
- * @LastEditTime : 2020-02-11 21:12:02
+ * @LastEditTime : 2020-02-11 21:48:16
  * @Description: 
  */
 const models = require('../config/db');
@@ -32,7 +32,8 @@ class DoctorModel {
         
         return await Appoint.findAll({
             where:{
-                doctor_id:doctor.doctor_id
+                doctor_id:doctor.doctor_id,
+                a_status:'待看诊'
             },
             include:[
                 {
@@ -95,6 +96,17 @@ class DoctorModel {
                 user_id:data.userId
             }
         })
+        //将患者归到该医生名下
+        Patient.update(
+            {
+                doctor_id:doctor.doctor_id
+            },
+            {
+                where:{
+                    patient_id:data.patientId
+                }
+            }
+        )
         return await Case.create({
             office_id:doctor.office_id,
             patient_id:data.patientId,
@@ -105,6 +117,7 @@ class DoctorModel {
             c_date:new Date()
         })
     }
+
 }
 
 module.exports =  DoctorModel
