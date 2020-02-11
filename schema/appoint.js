@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Benny
  * @Date: 2020-01-20 11:20:14
- * @LastEditTime : 2020-02-06 00:57:31
+ * @LastEditTime : 2020-02-11 17:46:48
  */
 /* jshint indent: 1 */
 
@@ -20,6 +20,14 @@ module.exports = function(sequelize, DataTypes) {
 			references: {
 				model: 'doctor',
 				key: 'doctor_id'
+			}
+		},
+		patient_id: {
+			type: DataTypes.INTEGER(10),
+			allowNull: false,
+			references: {
+				model: 'patient',
+				key: 'patient_id'
 			}
 		},
 		user_id: {

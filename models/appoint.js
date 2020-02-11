@@ -1,21 +1,26 @@
 /*
  * @Author: Benny
  * @Date: 2020-02-05 23:08:01
- * @LastEditors  : Benny
- * @LastEditTime : 2020-02-06 22:01:28
+ * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2020-02-11 17:48:16
  * @Description: 
  */
 const models = require('../config/db');
 const Appoint = models.appoint;
 const User = models.user;
 const Doctor = models.doctor;
+const Patient = models.patient;
 Appoint.belongsTo(User,{foreignKey:'user_id'})
 Appoint.belongsTo(Doctor,{foreignKey:'doctor_id'})
 
 class AppointModel {
     static async addAppointRecord(data){
+        const patient = await Patient.findOne({
+            user_id:data.userId
+        }) 
         return await Appoint.create({
             doctor_id:data.doctorId,
+            patient_id:patient.patient_id,
             user_id:data.userId,
             a_time:data.appointDate,
             a_reason:data.appointReason,

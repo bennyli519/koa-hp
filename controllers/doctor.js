@@ -2,7 +2,7 @@
  * @Description:医生相关接口
  * @Author: Benny
  * @Date: 2020-01-14 16:45:53
- * @LastEditTime : 2020-02-10 00:24:00
+ * @LastEditTime : 2020-02-11 21:07:32
  */
 const doctorModel = require('../models/doctor');
 const jwt = require('jsonwebtoken')
@@ -17,8 +17,9 @@ class doctorController{
     static async getMyPatientRecord(ctx){
         const token = ctx.cookies.get('vue_admin_template_token');
         const obj = jwt.verify(token,secret)
-        console.log(obj)
+        // console.log(obj)
         try {
+
             const res = await doctorModel.getMyPatientRecord(obj.userId)
             console.log(res)
             let list = []
@@ -31,6 +32,9 @@ class doctorController{
                     reason:i.a_reason,
                     status:i.a_status,        
                     phone:i.a_phone,
+                    patientId:i.patient_id,
+                    age:i.patient && i.patient.p_age,
+                    gender:i.patient && i.patient.p_gender == 'male'?'男':'女'
                   }
                   console.log(obj)
                   list.push(obj)
@@ -53,7 +57,24 @@ class doctorController{
      */
     static async getAllDoctorList(ctx){
         const res = await doctorModel.getDoctorList()
-        ctx.success(res)
+        let list = []
+        res.map(i=>{
+            
+            let obj = {
+                id:i.doctor_id,
+                userId:i.user_id,
+                userName:i.d_name,
+                // doctorName:i.doctor && i.doctor.d_name,
+                gender:i.d_gender == 'male'?'男':'女',
+                age:i.d_age,        
+                phone:i.d_phone,
+                officeName:i.office.o_name
+              }
+              console.log(obj)
+              list.push(obj)
+              
+        })
+        ctx.success(list)
     }
 
     /**
@@ -62,6 +83,9 @@ class doctorController{
      */
     static async consult(ctx){
         let req = ctx.request.body;
+        const token = ctx.cookies.get('vue_admin_template_token');
+        const obj = jwt.verify(token,secret)
+        req.userId = obj.userId;
         if(req){
             let res = await doctorModel.addConsult(req)
             ctx.success('提交成功')
@@ -74,11 +98,30 @@ class doctorController{
      * @author: Benny
      * @description: 获取医生名下患者
      */
-    static async getMyPatientList(){
+    static async getMyPatientList(ctx){
         const token = ctx.cookies.get('vue_admin_template_token');
         const obj = jwt.verify(token,secret)
         const res = await doctorModel.getMyPatientList(obj.userId)
-        ctx.success(res)
+
+        let list = []
+        res.map(i=>{
+            
+            let obj = {
+                userId:i.user_id,
+                patientId:i.patient_id,
+                userName:i.p_name,
+                // doctorName:i.doctor && i.doctor.d_name,
+                gender:i.p_gender == 'male'?'男':'女',
+                age:i.p_age,        
+                phone:i.p_phone,
+                address:i.p_address
+              }
+              console.log(obj)
+              list.push(obj)
+              
+        })
+        console.log(res)
+        ctx.success(list)
     }
 
    

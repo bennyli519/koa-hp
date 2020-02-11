@@ -2,7 +2,7 @@
  * @Author: Benny
  * @Date: 2020-01-13 00:17:47
  * @Description: 
- * @LastEditTime : 2020-02-10 00:18:59
+ * @LastEditTime : 2020-02-11 21:09:11
  */
 /* jshint indent: 1 */
 
@@ -11,7 +11,8 @@ module.exports = function(sequelize, DataTypes) {
 		case_id: {
 			type: DataTypes.INTEGER(10),
 			allowNull: false,
-			primaryKey: true
+			primaryKey: true,
+			autoIncrement: true
 		},
 		office_id: {
 			type: DataTypes.INTEGER(10),

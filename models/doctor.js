@@ -2,7 +2,7 @@
  * @Author: Benny
  * @Date: 2020-02-05 23:08:01
  * @LastEditors  : Please set LastEditors
- * @LastEditTime : 2020-02-10 00:22:59
+ * @LastEditTime : 2020-02-11 21:12:02
  * @Description: 
  */
 const models = require('../config/db');
@@ -14,7 +14,9 @@ const Patient = models.patient;
 const Case = models.case;
 Appoint.belongsTo(User,{foreignKey:'user_id'})
 Appoint.belongsTo(Doctor,{foreignKey:'doctor_id'})
+Appoint.belongsTo(Patient,{foreignKey:'patient_id'})
 Doctor.belongsTo(Office,{foreignKey:'office_id'})
+Patient.belongsTo(User,{foreignKey:'user_id'})
 
 class DoctorModel {
     /**
@@ -27,7 +29,7 @@ class DoctorModel {
                 user_id:userId
             }
         })
-    
+        
         return await Appoint.findAll({
             where:{
                 doctor_id:doctor.doctor_id
@@ -36,6 +38,10 @@ class DoctorModel {
                 {
                     model:User,
                     attributes:['user_id','user_name']
+                },
+                {
+                    model:Patient,
+                    attributes:['patient_id','p_name','p_gender','p_age']
                 }
             ]
         })
@@ -58,13 +64,13 @@ class DoctorModel {
      * @author: Benny
      * @description: 获取医生名下的患者
      */
-    static async getMyPatientList(){
+    static async getMyPatientList(userId){
         let doctor = await Doctor.findOne({
             where:{
                 user_id:userId
             }
         })
-    
+        console.log(doctor.doctor_id)
         return await Patient.findAll({
             where:{
                 doctor_id:doctor.doctor_id
@@ -84,13 +90,18 @@ class DoctorModel {
      * @param {type} 
      */
     static async addConsult(data){
+        let doctor = await Doctor.findOne({
+            where:{
+                user_id:data.userId
+            }
+        })
         return await Case.create({
-            office_id:data.officeId,
+            office_id:doctor.office_id,
             patient_id:data.patientId,
-            c_content:data.cContent,
-            c_conclude:data.cConclude,
-            c_suggest:data.cSuggest,
-            c_cure:data.cCure,
+            c_content:data.content,
+            c_conclude:data.conclude,
+            c_suggest:data.suggest,
+            c_cure:data.medicine,
             c_date:new Date()
         })
     }
