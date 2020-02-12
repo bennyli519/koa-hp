@@ -2,7 +2,7 @@
  * @Description:医生相关接口
  * @Author: Benny
  * @Date: 2020-01-14 16:45:53
- * @LastEditTime : 2020-02-11 21:41:07
+ * @LastEditTime : 2020-02-12 13:30:21
  */
 const doctorModel = require('../models/doctor');
 const appointModel = require('../models/appoint');
@@ -107,9 +107,11 @@ class doctorController{
      * @description: 获取医生名下患者
      */
     static async getMyPatientList(ctx){
+        let req = ctx.request.body;
         const token = ctx.cookies.get('vue_admin_template_token');
         const obj = jwt.verify(token,secret)
-        const res = await doctorModel.getMyPatientList(obj.userId)
+        req.userId = obj.userId
+        const res = await doctorModel.getMyPatientList(req)
 
         let list = []
         res.map(i=>{
@@ -132,6 +134,35 @@ class doctorController{
         ctx.success(list)
     }
 
+    /**
+     * @author: Benny
+     * @description: 获取案例汇总
+     */
+    static async getCaseList(ctx){
+        const res  = await doctorModel.getCaseList()
+        let list = []
+        res.map(i=>{
+            
+            let obj = {
+                caseId:i.case_id,
+                patientId:i.patient_id,
+                patientName:i.patient.p_name,
+                office:i.office.o_name,
+                caseContent:i.c_content,
+                caseConclude:i.c_conclude,
+                caseSuggest:i.c_suggest,
+                caseCure:i.c_cure,
+                caseDate:i.c_date,
+                
+                gender:i.patient.p_gender == 'male'?'男':'女',
+                age:i.patient.p_age,        
+              }
+              console.log(obj)
+              list.push(obj)
+              
+        })
+        ctx.success(list)
+    }
    
    
 }

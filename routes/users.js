@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Benny
  * @Date: 2019-12-29 21:01:50
- * @LastEditTime : 2020-02-01 14:58:55
+ * @LastEditTime : 2020-02-12 01:15:27
  */
 const router = require('koa-router')()
 const UserController = require('../controllers/user');
@@ -22,5 +22,7 @@ router.get('/info',UserController.getUserInfo)
 
 //获取用户列表
 router.get('/infoList',UserController.getAccountList)
+
+// router.post('/logout',UserController.logout)
 
 module.exports = router

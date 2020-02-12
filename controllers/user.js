@@ -2,7 +2,7 @@
  * @Description: User 控制器
  * @Author: Benny
  * @Date: 2020-01-14 16:45:53
- * @LastEditTime : 2020-01-31 17:29:13
+ * @LastEditTime : 2020-02-12 13:17:22
  */
 const UserModel = require('../models/user');
 const crypt = require('../config/crypt');
@@ -103,6 +103,12 @@ class userController{
             console.log(error)
         }
     }
+
+    // static async logout(ctx){
+    //     console.log('========')
+    //     ctx.cookies.set('vue_admin_template_token','')
+    //     ctx.response.redirect('/')
+    // }
 }
 
 module.exports = userController
