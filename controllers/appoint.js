@@ -2,7 +2,7 @@
  * @Description: book 控制器
  * @Author: Benny
  * @Date: 2020-01-14 16:45:53
- * @LastEditTime : 2020-02-09 23:10:07
+ * @LastEditTime: 2020-02-16 14:56:36
  */
 const appointModel = require('../models/appoint');
 const jwt = require('jsonwebtoken')
@@ -46,6 +46,8 @@ class appointController{
             res.map(i=>{
                
                 let obj = {
+                    appointId:i.appoint_id,
+                    patientId:i.patient_id,
                     date:i.a_time,
                     userName:i.user.user_name,
                     doctorName:i.doctor && i.doctor.d_name,
@@ -66,10 +68,31 @@ class appointController{
             ctx.fail(error)
         }
     }
-
+    //获取医生列表
     static async getDoctorList(ctx){
         let {officeId} = ctx.request.body;
         const res = await appointModel.getDoctorList(officeId)
+        ctx.success(res)
+    }
+    //取药记录
+    static async getMedicine(ctx){
+        let {patientId} = ctx.request.body;
+        const res = await appointModel.getMedicine(patientId)
+        ctx.success(res)
+    }
+
+    //修改看诊状态
+    static async updateStatus(ctx){
+        
+        const req = ctx.request.body;
+        req.status = '看诊结束'
+        const res = await appointModel.updateRecord(req)
+        ctx.success('修改状态成功')
+    }
+
+    static async getCase(ctx){
+        let {patientId} = ctx.request.body;
+        const res = await appointModel.getMedicine(patientId)
         ctx.success(res)
     }
 

@@ -1,7 +1,7 @@
 /*
  * @Author: Benny
  * @Date: 2020-02-05 23:08:01
- * @LastEditors  : Please set LastEditors
+ * @LastEditors: Please set LastEditors
  * @LastEditTime : 2020-02-11 17:48:16
  * @Description: 
  */
@@ -10,6 +10,7 @@ const Appoint = models.appoint;
 const User = models.user;
 const Doctor = models.doctor;
 const Patient = models.patient;
+const Case = models.case;
 Appoint.belongsTo(User,{foreignKey:'user_id'})
 Appoint.belongsTo(Doctor,{foreignKey:'doctor_id'})
 
@@ -65,6 +66,31 @@ class AppointModel {
             }
         )
     }
+
+    
+    static async getMedicine(parentId){
+        return await Case.findOne(
+            {
+                where:{
+                    patient_id:parentId
+                },
+                include:{
+                    model:Patient
+                }
+            }
+        )
+    }
+
+       
+    // static async getCase(parentId){
+    //     return await Case.findOne(
+    //         {
+    //             where:{
+    //                 patient:parentId
+    //             },
+    //         }
+    //     )
+    // }
 }
 
 module.exports =  AppointModel
