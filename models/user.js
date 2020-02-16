@@ -2,7 +2,7 @@
  * @Description: 用户model
  * @Author: Benny
  * @Date: 2020-01-14 16:11:49
- * @LastEditTime : 2020-02-04 16:14:22
+ * @LastEditTime: 2020-02-16 15:28:17
  */
 
 const models = require('../config/db');
@@ -11,7 +11,7 @@ const Doctor = models.doctor;
 const Patient = models.patient;
 const Role = models.role;
 const sequelize = models.sequelize;
-// models.sync();
+models.sync();
 User.belongsTo(Role,{foreignKey:'user_type'})
 User.belongsTo(Patient,{foreignKey:'user_id'})
 User.belongsTo(Doctor,{foreignKey:'user_id'})

@@ -2,11 +2,11 @@
  * @Description: 
  * @Author: Benny
  * @Date: 2019-12-29 21:26:44
- * @LastEditTime : 2020-02-01 15:05:23
+ * @LastEditTime: 2020-02-16 15:27:45
  */
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('hostital', 'root', '123', {
+const sequelize = new Sequelize('hospital', 'root', '123', {
     host: 'localhost',
     dialect: 'mysql',
     operatorsAliases: false,
